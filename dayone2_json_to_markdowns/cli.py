@@ -58,10 +58,7 @@ class DayOneJson:
         utc_timestamp = dateutil.parser.parse(creation_date)
         local_timestamp = utc_timestamp.astimezone(self._entry_tzinfo(entry))
 
-        try: 
-            text = entry["text"]
-        except: 
-            text = u""
+        text = entry.get("text", u"")
 
         self._entry_writer.write(local_timestamp, text)
 
